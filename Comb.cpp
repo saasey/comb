@@ -24,7 +24,7 @@ int main(int x, char ** argc, char * argv[]) {
         }
     for (int j=0;j<=31;j++) {
        if (heh[j]==0) {
-          Y=j*4+Y;
+          Y+=j*4;
           if (heh[j+1]=0) {
              j++;
              Y++;
@@ -62,7 +62,7 @@ int main(int x, char ** argc, char * argv[]) {
          else
             X=1;
 
-         if (0xffffffff > sizeof(incr)+(int)Y+2) {
+         if (0xffffffff > sizeof(incr)+(int)Y/4+6) {
 
                     for (int D : incr)
                       if (D%4==0 && D!=Y)
