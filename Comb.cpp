@@ -18,19 +18,27 @@ int main(int x, char ** argc, char * argv[]) {
    while (!(in.eof())) {
         char P=in.get();
         char heh[33]= { P };
-        if (0xff == P) {
-           Y+=256;
+        if (0xffffffff == P) {
+           Y+=32;
            heh[33]=in.get();
         }
     for (int j=0;j<=31;j++) {
        if (heh[j]==0) {
-          
-          if (Y%4!=0 && Y%2==0)
-             Y-=2;
-          else if (Y%4!=0 && Y%3==0)
-             Y-=1;
-             out << (char)X;
-             Y=1;
+          Y=j*4+Y;
+          if (heh[j+1]=0) {
+             j++;
+             Y++;
+          }
+          if (heh[j+1]==1 && heh[j+2]==0) {
+             j+=2;
+             Y+=2;
+          }
+          if (heh[j+1]==1 && heh[j+2]==1 && heh[j+3]==0) {
+             j+=3;
+             Y+=3;
+          }
+          out << (char)Y;
+          Y=1;
        } else if (heh[j]==1) {
                Y+=4;
                continue;
@@ -55,25 +63,20 @@ int main(int x, char ** argc, char * argv[]) {
             X=1;
 
          if (0xffffffff > sizeof(incr)+(int)Y+2) {
-            for (int j=0;j<=Y;j++) {
-                 if ((j) != (int)Y && j) {
-                    int F=1;
-                    incr[p++]=F;
-                 }
-                 if ((j)==(int)Y) {
-                    for (int D : incr)
-                      if (D%4==0 && D!=j)
-                         incr[D-1]=1;
-                      else if (D==j)
-                         incr[D]=0;
-                      else if (D+1==j)
-                         incr[D]=00;
-                      else if (D+2==j)
-                         incr[D]=010;
 
+                    for (int D : incr)
+                      if (D%4==0 && D!=Y)
+                         incr[D]=1;
+                      else if (D+1==Y)
+                         incr[D]=00;
+                      else if (D+2==Y)
+                         incr[D]=010;
+                      else if (D==Y)
+                         incr[D]=0;
+                      else if (D+3==Y)
+                         incr[D]=0110;
                     break;
-                 }
-             }
+
          } else {
              out << std::hex << incr;
              delete [] incr;
