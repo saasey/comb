@@ -18,8 +18,8 @@ int main(int x, char ** argc, char * argv[]) {
    while (!(in.eof())) {
         char P=in.get();
         char heh[33]= { P };
-        if (0xffffffff == P) {
-           Y+=127;
+        if (0xff == P) {
+           Y+=256;
            heh[33]=in.get();
         }
     for (int j=0;j<=31;j++) {
@@ -28,14 +28,11 @@ int main(int x, char ** argc, char * argv[]) {
           if (Y%4!=0 && Y%2==0)
              Y-=2;
           else if (Y%4!=0 && Y%3==0)
-             Y--;
-          else
-             continue;
-             
-               out << (char)X;
-               Y=1;
+             Y-=1;
+             out << (char)X;
+             Y=1;
        } else if (heh[j]==1) {
-               Y+=4
+               Y+=4;
                continue;
        } else {
           break;
@@ -57,17 +54,26 @@ int main(int x, char ** argc, char * argv[]) {
          else
             X=1;
 
-         if (0xffffffff > sizeof(incr)+(int)Y+1) {
+         if (0xffffffff > sizeof(incr)+(int)Y+2) {
             for (int j=0;j<=Y;j++) {
-                 if ((j) != (int)Y) {
+                 if ((j) != (int)Y && j) {
                     int F=1;
-                    incr[p++] = F;
-                 } else if ((j)==(int)Y) {
-                    int T=0;
-                    incr[p++] = T;
+                    incr[p++]=F;
+                 }
+                 if ((j)==(int)Y) {
+                    for (int D : incr)
+                      if (D%4==0 && D!=j)
+                         incr[D-1]=1;
+                      else if (D==j)
+                         incr[D]=0;
+                      else if (D+1==j)
+                         incr[D]=00;
+                      else if (D+2==j)
+                         incr[D]=010;
+
                     break;
-                }
-           }
+                 }
+             }
          } else {
              out << std::hex << incr;
              delete [] incr;
