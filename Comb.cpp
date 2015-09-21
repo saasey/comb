@@ -10,7 +10,7 @@ using namespace std;
  
 int main(int x, char ** argc, char * argv[]) {
    char incr[33];
-   int Y=1;
+   int Y=0;
   for (int i=0;i<=x;i++) {
    if (strcmp("-d",argv[i])) {
      std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
@@ -22,6 +22,7 @@ int main(int x, char ** argc, char * argv[]) {
            Y+=32;
            heh[33]=in.get();
         }
+        Y+=32;
     for (int j=0;j<=31;j++) {
        if (heh[j]==0) {
           Y+=j*4;
@@ -37,8 +38,8 @@ int main(int x, char ** argc, char * argv[]) {
              j+=3;
              Y+=3;
           }
-          out << (char)Y;
-          Y=1;
+          out << (char)Y-1;
+          Y=0;
        } else if (heh[j]==1) {
                Y+=4;
                continue;
