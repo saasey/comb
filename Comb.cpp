@@ -18,24 +18,29 @@ int main(int x, char ** argc, char * argv[]) {
    while (!(in.eof())) {
         char P=in.get();
         char heh[33]= { P };
+        if (0xffffffff == P) {
+           Y+=127;
+           heh[33]=in.get();
+        }
     for (int j=0;j<=31;j++) {
        if (heh[j]==0) {
-              
-          if (Y%2!=0)
-             Y++;
-               char ha[4]=(char)Y;
-               int X=(ha[x+2]+1)*32+((ha[x]*10)+ha[x+1]);
+          
+          if (Y%4!=0 && Y%2==0)
+             Y-=2;
+          else if (Y%4!=0 && Y%3==0)
+             Y--;
+          else
+             continue;
+             
                out << (char)X;
                Y=1;
-           } else if (heh[j]==1) {
-               Y++;
-               Y++;
+       } else if (heh[j]==1) {
+               Y+=4
                continue;
-           }
-           else {
-              break;
-           }
+       } else {
+          break;
        }
+      }
     }
      out.close();
      in.close();
