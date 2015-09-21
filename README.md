@@ -1,7 +1,7 @@
 # comb
 
 # Future updates
--Solve for x/32+(1→6) for each byte
+-Solve for x/32+(1→7) for each byte
 -Adopt 'truebyte' formula for numbers
 
 # v0.7a Bug Fixes
