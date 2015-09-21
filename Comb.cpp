@@ -13,7 +13,7 @@ int main(int x, char ** argc, char * argv[]) {
    int Y=1;
   for (int i=0;i<=x;i++) {
    if (strcmp("-d",argv[i])) {
-     std::ifstream  in(argv[i+1], std::ios::in);
+     std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
      std::ofstream  out(argv[i+2], std::ios::out | std::ios::binary);
    while (!(in.eof())) {
         char P=in.get();
@@ -52,7 +52,7 @@ int main(int x, char ** argc, char * argv[]) {
      cout << "The depression is fiñ";
      return 0;
   } else if (strcmp("-c",argv[i])) {
-   std::ifstream  in(argv[i+1]);
+   std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
    std::ofstream  out(argv[i+2]);
 	unsigned int p=0;
         int X=1;
@@ -62,7 +62,7 @@ int main(int x, char ** argc, char * argv[]) {
          else
             X=1;
 
-         if (0xffffffff > sizeof(incr)+(int)Y/4+6) {
+         if (0xffffffff > sizeof(incr)+(int)Y/4+4) {
 
                     for (int D : incr)
                       if (D%4==0 && D!=Y)
