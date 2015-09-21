@@ -50,34 +50,14 @@ int main(int x, char ** argc, char * argv[]) {
    std::ifstream  in(argv[i+1]);
    std::ofstream  out(argv[i+2]);
 	unsigned int p=0;
-        int X=1,z, C;
+        int X=1;
 	while (!(in.eof())) {
          if (X==1)
             Y=in.get();
          else
             X=1;
 
-                 if ((int)Y<32)
-                    z=1;
-                 else if ((int)Y>32)
-                    z=2;
-                 else if ((int)Y>=64)
-                    z=3;
-                 else if ((int)Y>=96)
-                    z=4;
-                 else if ((int)Y>=128)
-                    z=5;
-                 else if ((int)Y>=160)
-                    z=6;
-                 else if ((int)Y>=192)
-                    z=7;
-                 else if ((int)Y>=224)
-                    z=8;
-                 else if ((int)Y==256)
-                    z=9;
-                    C=(int)(Y-((z-1)*32))*10+z-1;
-                 p+=3;
-         if (0xffffffff > sizeof(incr)+(int)C) {
+         if (0xffffffff > sizeof(incr)+(int)Y+1) {
             for (int j=0;j<=Y;j++) {
                  if ((j) != (int)Y) {
                     int F=1;
