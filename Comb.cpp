@@ -31,7 +31,7 @@ int main(int x, char ** argc, char * argv[]) {
           out << (char)Y-1;
           Y=0;
        } else if (heh[j]==1) {
-          Y+=32;
+          Y+=31;
           continue;
        } else {
           break;
@@ -55,10 +55,8 @@ int main(int x, char ** argc, char * argv[]) {
 
          if (0xffffffff > sizeof(incr)+(int)Y/32+6) {
 
-                 for (int D=0;D<=32;D++) {
-                     if (D!=Y && Y-D<32)
-                         incr[D]=1;
-                      else if (D+1==Y)
+                 for (int D=0;D<=32;D++)
+                      if (D+1==Y)
                          incr[D]=00000;
                       else if (D+2==Y)
                          incr[D]=10000;
@@ -122,6 +120,8 @@ int main(int x, char ** argc, char * argv[]) {
                          incr[D]=01111;
                       else if (D==Y)
                          incr[D]=0;
+                      else if (D!=Y)
+                         incr[D]=1;
                     break;
                 }
          } else {
