@@ -6,6 +6,7 @@
 #include <string>
 #include <cstring>
 #include <climits.h>
+
 using namespace std;
  
 int main(int x, char ** argc, char * argv[]) {
@@ -19,14 +20,10 @@ int main(int x, char ** argc, char * argv[]) {
         long long P =in.get();
         char heh[62]= { P };
     for (int j=0;j<=31;j++) {
-       if ( == P) {
-           heh=in.getline();
-           break;
-        }
        if (heh[j]==0) {
-          Y+=j*32;
+          Y+=j*31;
           P[0]=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
-          j+=6
+          j+=5;
           Y+=(int)P;
           out << (char)Y-1;
           Y=0;
@@ -53,7 +50,7 @@ int main(int x, char ** argc, char * argv[]) {
          else
             X=1;
 
-         if (LLONG_MAX > (int)incr+(int)Y/32+5) {
+         if (LLONG_MAX > (int)incr+(int)Y/31+5) {
                       if (D+1==Y)
                          incr[D]=0000;
                       else if (D+2==Y)
@@ -94,7 +91,7 @@ int main(int x, char ** argc, char * argv[]) {
                 }
          } else {
              out << std::dec << incr << endl;
-             char incr[33]={};
+             char incr[63]={};
              X=0;
            }
      }
