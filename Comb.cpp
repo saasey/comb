@@ -5,7 +5,7 @@
 #include <climits>
 #include <string>
 #include <cstring>
- 
+#include <climits.h>
 using namespace std;
  
 int main(int x, char ** argc, char * argv[]) {
@@ -16,16 +16,16 @@ int main(int x, char ** argc, char * argv[]) {
      std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
      std::ofstream  out(argv[i+2], std::ios::out | std::ios::binary);
    while (!(in.eof())) {
-        char P[12]=in.get();
-        char heh[33]= { P };
+        long long P =in.get();
+        char heh[62]= { P };
     for (int j=0;j<=31;j++) {
-       if (0xffffffff == P) {
-           heh[33]=in.get();
+       if ( == P) {
+           heh=in.getline();
            break;
         }
        if (heh[j]==0) {
           Y+=j*32;
-          P[0]=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4]+heh[j+5];
+          P[0]=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
           j+=6
           Y+=(int)P;
           out << (char)Y-1;
@@ -44,7 +44,7 @@ int main(int x, char ** argc, char * argv[]) {
      return 0;
   } else if (strcmp("-c",argv[i])) {
    std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
-   std::ofstream  out(argv[i+2]);
+   std::ofstream  out(argv[i+2], std::ios::in | std::ios::dec);
 	unsigned int p=0;
         int X=1;
 	while (!(in.eof())) {
@@ -53,71 +53,39 @@ int main(int x, char ** argc, char * argv[]) {
          else
             X=1;
 
-         if (0xffffffff > sizeof(incr)+(int)Y/32+6) {
-
-                 for (int D=0;D<=32;D++)
+         if (LLONG_MAX > (int)incr+(int)Y/32+5) {
                       if (D+1==Y)
-                         incr[D]=00000;
+                         incr[D]=0000;
                       else if (D+2==Y)
-                         incr[D]=10000;
+                         incr[D]=1000;
                       else if (D+3==Y)
-                         incr[D]=01000;
+                         incr[D]=0100;
                       else if (D+4==Y)
-                         incr[D]=11000;
+                         incr[D]=1100;
                       else if (D+5==Y)
-                         incr[D]=00100;
+                         incr[D]=0010;
                       else if (D+6==Y)
-                         incr[D]=10100;
+                         incr[D]=1010;
                       else if (D+7==Y)
-                         incr[D]=01100;
+                         incr[D]=0110;
                       else if (D+8==Y)
-                         incr[D]=11100;
+                         incr[D]=1110;
                       else if (D+9==Y)
-                         incr[D]=00010;
+                         incr[D]=0001;
                       else if (D+10==Y)
-                         incr[D]=10010;
+                         incr[D]=1001;
                       else if (D+11==Y)
-                         incr[D]=01010;
+                         incr[D]=0101;
                       else if (D+12==Y)
-                         incr[D]=11010;
+                         incr[D]=1101;
                       else if (D+13==Y)
-                         incr[D]=00110;
+                         incr[D]=0011;
                       else if (D+14==Y)
-                         incr[D]=10110;
+                         incr[D]=1011;
                       else if (D+15==Y)
-                         incr[D]=01110;
+                         incr[D]=0111;
                       else if (D+16==Y)
-                         incr[D]=11110;
-                      else if (D+17==Y)
-                         incr[D]=00001;
-                      else if (D+18==Y)
-                         incr[D]=10001;
-                      else if (D+19==Y)
-                         incr[D]=01001;
-                      else if (D+20==Y)
-                         incr[D]=11001;
-                      else if (D+21==Y)
-                         incr[D]=00101;
-                      else if (D+22==Y)
-                         incr[D]=10100;
-                      else if (D+23==Y)
-                         incr[D]=01100;
-                      else if (D+24==Y)
-                         incr[D]=11100;
-                      else if (D+25==Y)
-                         incr[D]=00010;
-                      else if (D+26==Y)
-                         incr[D]=10010;
-                      else if (D+27==Y)
-                         incr[D]=01010;
-                      else if (D+28==Y)
-                         incr[D]=11010;
-                      else if (D+29==Y)
-                         incr[D]=00111;
-                      else if (D+30==Y)
-                         incr[D]=10111;
-                      else if (D+31==Y)
-                         incr[D]=01111;
+                         incr[D]=1111;
                       else if (D==Y)
                          incr[D]=0;
                       else if (D!=Y)
@@ -125,9 +93,8 @@ int main(int x, char ** argc, char * argv[]) {
                     break;
                 }
          } else {
-             out << std::hex << incr;
-             delete [] incr;
-             char incr[33];
+             out << std::dec << incr << endl;
+             char incr[33]={};
              X=0;
            }
      }
