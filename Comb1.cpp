@@ -22,9 +22,13 @@ int main(int x, char ** argc, char * argv[]) {
     for (int j=0;j<=31;j++) {
        if (heh[j]==0) {
           Y+=j*31;
-          P[0]=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
-          j+=5;
-          Y+=(int)P;
+          P=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
+          j+=4;
+
+          int G=round(Y/100-0.5)+1;
+          int H=round(Y/10-0.5)-G*10;
+          int I=Y-G-H;
+          Y=H*32+(G)+I;
           out << (char)Y-1;
           Y=0;
        } else if (heh[j]==1) {
@@ -89,6 +93,28 @@ int main(int x, char ** argc, char * argv[]) {
                          incr[D]=1;
                     break;
                 }
+
+         if (incr < 1000000000-(int)Y) {
+                 if ((int)Y<32)
+                    z=1;
+                 else if ((int)Y>32)
+                    z=2;
+                 else if ((int)Y>=64)
+                    z=3;
+                 else if ((int)Y>=96)
+                    z=4;
+                 else if ((int)Y>=128)
+                    z=5;
+                 else if ((int)Y>=160)
+                    z=6;
+                 else if ((int)Y>=192)
+                    z=7;
+                 else if ((int)Y>=224)
+                    z=8;
+                 else if ((int)Y==256)
+                    z=9;
+                    incr[D]=(int)(Y-((z-1)*32))*10+z-1;
+                 p+=3;
          } else {
              out << std::dec << incr << endl;
              char incr[63]={};
