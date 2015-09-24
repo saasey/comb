@@ -11,24 +11,26 @@ using namespace std;
  
 int main(int x, char ** argc, char * argv[]) {
    char incr[33]={ "\0" };
-   int Y=0;
+   int Y=32;
   for (int i=0;i<=x;i++) {
    if (strcmp("-d",argv[i])) {
      std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
      std::ofstream  out(argv[i+2], std::ios::out | std::ios::binary);
    while (!(in.eof())) {
-        long long P =in.get();
-        char heh[62]= { P };
+        int V=0;
+        char P[33] =in.getline();
+        char heh[33] = in.getline();
     for (int j=0;j<=31;j++) {
        if (heh[j]==0) {
-          Y+=j*31;
-          P[0]=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
-          j+=5;
-          Y+=(int)P;
+          if (heh[j+1]==0)
+            Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4]+heh[j+5]+heh[j+6]+heh[j+7]+heh[j+8];
+          else
+            Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
+          j
           out << (char)Y-1;
           Y=0;
        } else if (heh[j]==1) {
-          Y+=31;
+          Y+=32;
           continue;
        } else {
           break;
@@ -47,10 +49,11 @@ int main(int x, char ** argc, char * argv[]) {
 	while (!(in.eof())) {
          if (X==1)
             Y=in.get();
+            if ((int)Y>=
          else
             X=1;
-
-         if (LLONG_MAX > (int)incr+(int)Y/31+5) {
+         while (a) {
+         if (32 >= incr.c_str(),length()) {
                       if (D+1==Y)
                          incr[D]=0000;
                       else if (D+2==Y)
@@ -90,8 +93,8 @@ int main(int x, char ** argc, char * argv[]) {
                     break;
                 }
          } else {
-             out << std::dec << incr << endl;
-             char incr[63]={};
+             out << std::hex << incr << endl;
+             char incr={};
              X=0;
            }
      }
