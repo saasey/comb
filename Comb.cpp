@@ -34,7 +34,6 @@ int main(int x, char ** argc, char * argv[]) {
             Y+=heh[j+5]+heh[j+6]+heh[j+7]+heh[j+8];
             j+=9;
             V+=2;
-       }
           out << (char)Y;
           Y=0;
        } else if (heh[j]==1) {
