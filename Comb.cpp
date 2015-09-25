@@ -12,7 +12,7 @@ using namespace std;
 int main(int x, char ** argc, char * argv[]) {
    char incr[33]={ "\0" };
    int Y=32;
-   int indr[33]={ "\0" };
+   char indr[33]={ "\0" };
    int Nmbrcnt=0, x=0;
   for (int i=0;i<=x;i++) {
    if (strcmp("-d",argv[i])) {
@@ -25,15 +25,65 @@ int main(int x, char ** argc, char * argv[]) {
     for (int j=0;j<=31;j++) {
        if (P[V]==0) {
           if (P[V+1]==0) {
+            if (P[V+2]==1) {
+            Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
+            j+=5;
+            V+=3;
+            }
+          }
+       }
+       if (P[V]==1) {
+          if (P[V+1]==0) {
+            if (P[V+2]==0 {
             Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
             Y+=heh[j+5]+heh[j+6]+heh[j+7]+heh[j+8];
             j+=9;
-            V++;
+            V+=3;
+            }
           }
-          else {
+       }
+       if (P[V]==0) {
+          if (P[V+1]==0) {
+            if (P[V+2]==0) {
             Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
+            j+=5;
+            V+=3;
+            Y+=32;
+           }
+         }
+       }
+       if (P[V]==0) {
+         if (P[V+1]==1) {
+            if (P[V+2]==1) {
+            Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
+            Y+=heh[j+5]+heh[j+6]+heh[j+7]+heh[j+8];
+            j+=9;
+            V+=3;
+            Y+=32;
+           }
+         }
+       }
+       if (P[V]==1) {
+         if (P[V+1]==1) {
+            if (P[V+2]==1) {
+            Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
+            j+=9;
+            V+=3;
+            Y+=64;
+            }
+         }
+       }
+       if (P[V]==0) {
+         if (P[V+1]==1) {
+            if (P[V+2]==1) {
+            Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
+            Y+=heh[j+5]+heh[j+6]+heh[j+7]+heh[j+8];
+            j+=9;
+            V+=3;
+            Y+=64;
           }
-          V++;
+        }
+      }
           out << (char)Y;
           Y=0;
        } else if (heh[j]==1) {
@@ -53,27 +103,38 @@ int main(int x, char ** argc, char * argv[]) {
    std::ofstream  out(argv[i+2], std::ios::in | std::ios::dec);
 	unsigned int p=0;
         int X=1;
-	while (!(in.eof())) {
+        int j=0;
+        int Nmbrcnt=0;
+   while (!(in.eof())) {
          int a=0;
          int D=0;
          if (q==1) {
             Y=in.get();
             if ((int)Y%32<1)
-               int Nmbrcnt = Y/32;
+               Nmbrcnt = Y/32;
             else
-               x=Y%32;
+               Y=Y%32;
          }
          else {
             q=1;
          }
-        for (int j=0;j<=Nmbrcnt-1;j++)
-            indr[j]=1;
+         if (Nmbrcnt==1)
+            indr[j++]=00;
+         else if (Nmbrcnt==2)
+            indr[j++]=10;
+         else if (Nmbrcnt==3)
+            indr[j++]=01;
+         else
+            indr[j++]=11;
+
         if (x<16)
            a=1;
+
         indr[Nmbrcnt]=0;
+
         while (x>0) {
-         if (28 >= incr.c_str().length()) {
-           while (a>=2) {
+          if (28 >= incr.c_str().length()) {
+             while (a>=2) {
                       if (1==Y)
                          incr[D]=0000;
                       else if (2==Y)
@@ -107,14 +168,15 @@ int main(int x, char ** argc, char * argv[]) {
                       else if (16==Y)
                          incr[D]=1111;
                     break;
-                 a++;
-           }
-         } else {
+                    a++;
+              }
+           } else {
              out << std::hex << incr << endl;
              out << std::hex << indr << endl;
              char indr={};
              char incr={};
-             X=0;
+             j=0;
+             q=0;
            }
          x-=16;
        }
