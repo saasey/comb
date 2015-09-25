@@ -73,8 +73,8 @@ int main(int x, char ** argc, char * argv[]) {
             }
          }
        }
-       if (P[V]==0) {
-         if (P[V+1]==1) {
+       if (P[V]==1) {
+         if (P[V+1]==0) {
             if (P[V+2]==1) {
             Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
             Y+=heh[j+5]+heh[j+6]+heh[j+7]+heh[j+8];
