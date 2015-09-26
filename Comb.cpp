@@ -11,39 +11,43 @@ using namespace std;
  
 int main(int x, char ** argc, char * argv[]) {
    char incr[33]={ "\0" };
-   int Y=32;
+   int Y=32; int V=0;
    char indr[33]={ "\0" };
    int Nmbrcnt=0, x=0;
   for (int i=0;i<=x;i++) {
    if (strcmp("-d",argv[i])) {
      std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
      std::ofstream  out(argv[i+2], std::ios::out | std::ios::binary);
+     int PassP=0;
+     char P[33]={};
    while (!(in.eof())) {
-        int V=0;
-        char P[33] =in.getline();
-        char heh[33] = in.getline();
-    for (int j=0;j<=31;j++) {
-       if (P[V]==0) {
-          if (P[V+1]==0) {
-            Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
-            j+=5;
-            V+=2;
-          }
-       } else if (P[V+1]!=0) {
-            Y+=heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4];
-            Y+=heh[j+5]+heh[j+6]+heh[j+7]+heh[j+8];
-            j+=9;
-            V+=2;
-          out << (char)Y;
-          Y=0;
-       } else if (heh[j]==1) {
-          Y+=32;
-          continue;
-       } else {
-          break;
+       if (PassP=0) {
+         P=in.getline();
+         PassP=1;
        }
-      }
+       char heh[33]={};
+    for (V : P) {
+    for (j : heh) {
+       if (P[V]==0) {
+            Y+=heh[j+1]+heh[j+2]+heh[j+3];
+            j+=4;
+            V+=2;
+            Cbrnch+=1;
+            int Zzz=1;
+       }
+
+       if (P[V]==1)
+            Y+=32;
+       else if (heh[j]!=0 && heh[j]!=1)
+            break;
     }
+    if (V==P.c_str().length()) 
+       PassP=0;
+
+       out << (char)Y-Cbrnch;
+       Y=32;
+    }
+  }
      out.close();
      in.close();
      cout << "The depression is fiñ";
@@ -52,70 +56,65 @@ int main(int x, char ** argc, char * argv[]) {
    std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
    std::ofstream  out(argv[i+2], std::ios::in | std::ios::dec);
 	unsigned int p=0;
-        int X=1;
+        int q=1;
         int j=0;
         int Nmbrcnt=0;
    while (!(in.eof())) {
          int a=0;
          int D=0;
-         if (q==1) {
+         if (q==1)
             Y=in.get();
-            if ((int)Y%32<1)
-               Nmbrcnt = Y/32;
-            else
-               x=Y%32;
-         }
-         else {
+         else
             q=1;
-         }
+
+               Nmbrcnt = Y/32;
+               x=Y%32+1
          if (j=0;j<=Nmbrcnt-1;j++)
             indr[j]=1;
 
-         if (x<16)
+         if (x<=8)
+            a=0;
+         else if (x>=9)
             a=1;
+         else if (x>=18)
+            a=2;
+         else if (x>=27)
+            a=3;
+         
 
-          if (28 >= incr.c_str().length()) {
-             while (a>=2) {
-                      if (1==Y)
-                         incr[D]=0000;
-                      else if (2==Y)
-                         incr[D]=1000;
-                      else if (3==Y)
-                         incr[D]=0100;
-                      else if (4==Y)
-                         incr[D]=1100;
-                      else if (5==Y)
-                         incr[D]=0010;
-                      else if (6==Y)
-                         incr[D]=1010;
-                      else if (7==Y)
-                         incr[D]=0110;
-                      else if (8==Y)
-                         incr[D]=1110;
-                      else if (9==Y)
-                         incr[D]=0001;
-                      else if (10==Y)
-                         incr[D]=1001;
-                      else if (11==Y)
-                         incr[D]=0101;
-                      else if (12==Y)
-                         incr[D]=1101;
-                      else if (13==Y)
-                         incr[D]=0011;
-                      else if (14==Y)
-                         incr[D]=1011;
-                      else if (15==Y)
-                         incr[D]=0111;
-                      else if (16==Y)
-                         incr[D]=1111;
+         Nmbrcnt=round(Nmbrcnt-0.5);
+
+         indr[Nmbrcnt]=0;
+
+         if (24 >= incr.c_str().length()) {
+             while (a>=0) {
+                      if (1==x)
+                         incr[D]=000;
+                      else if (2==x)
+                         incr[D]=100;
+                      else if (3==x)
+                         incr[D]=010;
+                      else if (4==x)
+                         incr[D]=110;
+                      else if (5==x)
+                         incr[D]=001;
+                      else if (6==x)
+                         incr[D]=101;
+                      else if (7==x)
+                         incr[D]=011;
+                      else if (8==x)
+                         incr[D]=111;
+           
                     break;
-                    a++;
+                    a--;
               }
            } else {
              out << std::hex << incr << endl;
-             out << std::hex << indr << endl;
-             char indr={};
-             char incr={};
+             if (indr.c_str().length() >=28) {
+                out << std::hex << indr << endl;
+                indr={};
+             }
+             incr={};
              j=0;
              q=0;
            }
