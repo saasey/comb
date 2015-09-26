@@ -18,19 +18,25 @@ int main(int x, char ** argc, char * argv[]) {
    if (strcmp("-d",argv[i])) {
      std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
      std::ofstream  out(argv[i+2], std::ios::out | std::ios::binary);
-     int PassP=0;
+     int PassP=1;
+     char heh[33]={};
      char P[33]={};
    while (!(in.eof())) {
-       if (PassP=0) {
+
+       if (PassP=1) {
          P=in.getline();
-         PassP=1;
+         PassP=0;
        }
-       char heh[33]=in.getline();
+       else {
+         PassP=0;
+       }
+
     for (V : P) {
        if (P[V]==0) {
             Y+=heh[j]+heh[j+1]+heh[j+2];
             j+=3;
-            V+=2;
+            if (heh.c_str().length()==j)
+                heh=in.getline();
             Cbrnch++;
        }
 
@@ -39,11 +45,10 @@ int main(int x, char ** argc, char * argv[]) {
        else if (heh[j]!=0 && heh[j]!=1)
             break;
        if (V==P.c_str().length()) 
-            PassP=0;
+            PassP=1;
 
        out << (char)Y-Cbrnch;
        Y=32;
-
 
     }
   }
@@ -53,8 +58,7 @@ int main(int x, char ** argc, char * argv[]) {
      return 0;
   } else if (strcmp("-c",argv[i])) {
    std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
-   std::ofstream  out(argv[i+2], std::ios::in | std::ios::dec);
-	unsigned int p=0;
+   std::ofstream  out(argv[i+2], std::ios::in)
         int q=1;
         int j=0;
         int Nmbrcnt=0;
@@ -68,10 +72,12 @@ int main(int x, char ** argc, char * argv[]) {
         
          Y+=1;
 
-               Nmbrcnt = Y/32;
-               x=Y%32+1
+         Nmbrcnt = Y/32;
+
          if (j=0;j<=Nmbrcnt-1;j++)
             indr[j]=1;
+
+         x=Y%32;
 
          if (x<=8)
             a=0;
@@ -110,7 +116,8 @@ int main(int x, char ** argc, char * argv[]) {
                     a--;
               }
            } else {
-             out << std::hex << incr << endl;
+             if (incr.c_str().length() >=27)
+                out << std::hex << incr << endl;
              if (indr.c_str().length() >=28) {
                 out << std::hex << indr << endl;
                 indr={};
@@ -118,9 +125,8 @@ int main(int x, char ** argc, char * argv[]) {
              incr={};
              j=0;
              q=0;
-           }
-         x-=8;
-       }
+          }
+        }
      }
      out.close();
      in.close();
