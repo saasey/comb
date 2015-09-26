@@ -29,8 +29,8 @@ int main(int x, char ** argc, char * argv[]) {
     for (V : P) {
     for (j : heh) {
        if (P[V]==0) {
-            Y+=heh[j+1]+heh[j+2]+heh[j+3];
-            j+=4;
+            Y+=heh[j]+heh[j+1]+heh[j+2];
+            j+=3;
             V+=2;
             Cbrnch+=1;
             int Zzz=1;
