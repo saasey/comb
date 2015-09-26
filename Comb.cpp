@@ -11,7 +11,7 @@ using namespace std;
  
 int main(int x, char ** argc, char * argv[]) {
    char incr[33]={ "\0" };
-   int Y=32; int V=0;
+   int Y=32; int V=0, j=0;
    char indr[33]={ "\0" };
    int Nmbrcnt=0, x=0;
   for (int i=0;i<=x;i++) {
@@ -25,27 +25,26 @@ int main(int x, char ** argc, char * argv[]) {
          P=in.getline();
          PassP=1;
        }
-       char heh[33]={};
+       char heh[33]=in.getline();
     for (V : P) {
-    for (j : heh) {
        if (P[V]==0) {
             Y+=heh[j]+heh[j+1]+heh[j+2];
             j+=3;
             V+=2;
-            Cbrnch+=1;
-            int Zzz=1;
+            Cbrnch++;
        }
 
        if (P[V]==1)
             Y+=32;
        else if (heh[j]!=0 && heh[j]!=1)
             break;
-    }
-    if (V==P.c_str().length()) 
-       PassP=0;
+       if (V==P.c_str().length()) 
+            PassP=0;
 
        out << (char)Y-Cbrnch;
        Y=32;
+
+
     }
   }
      out.close();
@@ -66,6 +65,8 @@ int main(int x, char ** argc, char * argv[]) {
             Y=in.get();
          else
             q=1;
+        
+         Y+=1;
 
                Nmbrcnt = Y/32;
                x=Y%32+1
@@ -74,13 +75,14 @@ int main(int x, char ** argc, char * argv[]) {
 
          if (x<=8)
             a=0;
-         else if (x>=9)
+         else if (x>=8)
             a=1;
-         else if (x>=18)
+         else if (x>=16)
             a=2;
-         else if (x>=27)
+         else if (x>=24)
             a=3;
-         
+         else if (x>=32)
+            a=4;
 
          Nmbrcnt=round(Nmbrcnt-0.5);
 
@@ -88,24 +90,23 @@ int main(int x, char ** argc, char * argv[]) {
 
          if (24 >= incr.c_str().length()) {
              while (a>=0) {
-                      if (1==x)
+                      if (0==x)
                          incr[D]=000;
-                      else if (2==x)
+                      else if (1==x)
                          incr[D]=100;
-                      else if (3==x)
+                      else if (2==x)
                          incr[D]=010;
-                      else if (4==x)
+                      else if (3==x)
                          incr[D]=110;
-                      else if (5==x)
+                      else if (4==x)
                          incr[D]=001;
-                      else if (6==x)
+                      else if (5==x)
                          incr[D]=101;
-                      else if (7==x)
+                      else if (6==x)
                          incr[D]=011;
-                      else if (8==x)
+                      else if (7==x)
                          incr[D]=111;
-           
-                    break;
+                    D+=3;
                     a--;
               }
            } else {
@@ -118,7 +119,7 @@ int main(int x, char ** argc, char * argv[]) {
              j=0;
              q=0;
            }
-         x-=16;
+         x-=8;
        }
      }
      out.close();
