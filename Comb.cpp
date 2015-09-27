@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <fstream>
 #include <iostream>
-#include <climits>
-#include <string>
 #include <cstring>
-#include <climits.h>
 
 using namespace std;
  
@@ -13,6 +9,7 @@ int main(int x, char ** argc, char * argv[]) {
    char incr[33]={ "\0" };
    int Y=32; int V=0, j=0;
    char indr[33]={ "\0" };
+   int Cbrnch=0;
    int Nmbrcnt=0, x=0;
   for (int i=0;i<=x;i++) {
    if (strcmp("-d",argv[i])) {
@@ -33,10 +30,10 @@ int main(int x, char ** argc, char * argv[]) {
 
     for (V : P) {
        if (P[V]==0) {
-            Y+=heh[j]+heh[j+1]+heh[j+2];
-            j+=3;
             if (heh.c_str().length()==j)
                 heh=in.getline();
+            Y+=heh[j]+heh[j+1]+heh[j+2];
+            j+=3;
             Cbrnch++;
        }
 
@@ -47,10 +44,10 @@ int main(int x, char ** argc, char * argv[]) {
        if (V==P.c_str().length()) 
             PassP=1;
 
-       out << (char)Y-Cbrnch;
        Y=32;
 
     }
+     out << (char)Y-Cbrnch;
   }
      out.close();
      in.close();
@@ -65,13 +62,13 @@ int main(int x, char ** argc, char * argv[]) {
    while (!(in.eof())) {
          int a=0;
          int D=0;
-         if (q==1)
+         if (q==1) {
             Y=in.get();
-         else
+            Y++;
+         }
+         else {
             q=1;
-        
-         Y+=1;
-
+         }
          Nmbrcnt = Y/32;
 
          if (j=0;j<=Nmbrcnt-1;j++)
