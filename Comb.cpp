@@ -31,7 +31,7 @@ int main(int x, char ** argc, char * argv[]) {
 
     for (V : P) {
        
-       if (P[V]==1) {
+       if (P[V]==1)
             Y+=32;
        else if (heh[j]!=0 && heh[j]!=1)
             break;
