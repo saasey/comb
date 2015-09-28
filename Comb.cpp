@@ -113,16 +113,18 @@ int main(int x, char ** argc, char * argv[]) {
                     a--;
               }
            } else {
-             if (incr.c_str().length() >=27) {
+             if (indr.c_str().length() >=27) {
                 out << std::hex << indr << endl;
                 incr={};
-          //   }
-        //     if (incr.c_str().length() >=28) {
+                q=1;
+             }
+             else {
+                q=0;
+             }
+             if (incr.c_str().length() >=28) {
                 out << std::hex << incr << endl;
                 indr={};
              }
-             j=0;
-             q=0;
           }
         }
      }
