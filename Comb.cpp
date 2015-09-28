@@ -23,6 +23,7 @@ int main(int x, char ** argc, char * argv[]) {
        if (PassP=1) {
          P=in.getline();
          PassP=0;
+         j=0;
        }
        else {
          PassP=1;
@@ -48,6 +49,7 @@ int main(int x, char ** argc, char * argv[]) {
 
     }
      out << (char)Y-Cbrnch;
+     Cbrnch=0;
   }
      out.close();
      in.close();
