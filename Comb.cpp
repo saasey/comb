@@ -9,7 +9,6 @@ int main(int x, char ** argc, char * argv[]) {
    char incr[33]={ "\0" };
    int Y=32; int V=0, j=0;
    char indr[33]={ "\0" };
-   int Cbrnch=0;
    int Nmbrcnt=0, x=0;
   for (int i=0;i<=x;i++) {
    if (strcmp("-d",argv[i])) {
@@ -24,32 +23,31 @@ int main(int x, char ** argc, char * argv[]) {
          P=in.getline();
          PassP=0;
          j=0;
+         Y=32;
        }
        else {
          PassP=1;
        }
 
     for (V : P) {
+       
+       if (P[V]==1) {
+            Y+=32;
+       else if (heh[j]!=0 && heh[j]!=1)
+            break;
+
        if (P[V]==0) {
             if (heh.c_str().length()==j)
                 heh=in.getline();
             Y+=heh[j]+heh[j+1]+heh[j+2];
             j+=3;
-            Cbrnch++;
        }
 
-       if (P[V]==1)
-            Y+=32;
-       else if (heh[j]!=0 && heh[j]!=1)
-            break;
-       if (V==P.c_str().length()) 
+       if (V>=P.c_str().length()) 
             PassP=1;
 
-       Y=32;
-
     }
-     out << (char)Y-Cbrnch;
-     Cbrnch=0;
+     out << (char)Y;
   }
      out.close();
      in.close();
@@ -65,7 +63,6 @@ int main(int x, char ** argc, char * argv[]) {
          int D=0;
          if (q==1) {
             Y=in.get();
-            Y++;
          }
          else {
             q=1;
@@ -85,8 +82,6 @@ int main(int x, char ** argc, char * argv[]) {
             a=2;
          else if (x>=24)
             a=3;
-         else if (x>=32)
-            a=4;
 
          Nmbrcnt=round(Nmbrcnt-0.5);
 
@@ -141,4 +136,3 @@ int main(int x, char ** argc, char * argv[]) {
  
      return 0;
 }
- 
