@@ -25,7 +25,7 @@ int main(int x, char ** argc, char * argv[]) {
          PassP=0;
        }
        else {
-         PassP=0;
+         PassP=1;
        }
 
     for (V : P) {
@@ -57,7 +57,6 @@ int main(int x, char ** argc, char * argv[]) {
    std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
    std::ofstream  out(argv[i+2], std::ios::in)
         int q=1;
-        int j=0;
         int Nmbrcnt=0;
    while (!(in.eof())) {
          int a=0;
