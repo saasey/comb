@@ -51,7 +51,7 @@ int main(int x, char ** argc, char * argv[]) {
   }
      out.close();
      in.close();
-     cout << "The depression is fiñ";
+     cout << "The depression is fiń";
      return 0;
   } else if (strcmp("-c",argv[i])) {
    std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
