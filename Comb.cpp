@@ -113,7 +113,6 @@ int main(int x, char ** argc, char * argv[]) {
                     D+=3;
                     a--;
               }
-           } else {
              if (indr.c_str().length() >=27) {
                 out << std::hex << indr << endl;
                 incr={};
@@ -126,8 +125,7 @@ int main(int x, char ** argc, char * argv[]) {
                 out << std::hex << incr << endl;
                 indr={};
              }
-          }
-        }
+         }
      }
      out.close();
      in.close();
