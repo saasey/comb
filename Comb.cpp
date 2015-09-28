@@ -17,9 +17,8 @@ int main(int x, char ** argc, char * argv[]) {
      int PassP=1;
      char heh[33]={};
      char P[33]={};
-     int L=0;
    while (!(in.eof())) {
-
+       int L=0;
        if (PassP=1) {
          P=in.getline();
          PassP=0;
@@ -42,13 +41,14 @@ int main(int x, char ** argc, char * argv[]) {
                 heh=in.getline();
             L+=heh[j]+heh[j+1]+heh[j+2];
             j+=3;
+            if P[V+1]==1) 
+               out << (char)Y+L;
        }
 
        if (V>=P.c_str().length()) 
             PassP=1;
 
     }
-     out << (char)Y+L;
   }
      out.close();
      in.close();
