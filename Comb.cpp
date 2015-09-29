@@ -70,23 +70,27 @@ int main(int x, char ** argc, char * argv[]) {
          }
          Nmbrcnt = Y/32;
 
-         if (j=0;j<=Nmbrcnt-1;j++)
-            indr[j]=1;
+
+         if (Numbrcnt==0) {
+            indr[j]=00;
+         }
+         else if (Nmbrcnt==1) {
+            indr[j]=10;
+         }
+         else if (Numbrcnt==2) {
+            indr[j]=01;
+         }
+         else if (Nmbrcnt==3) {
+            indr[j]=11;
+         }
+         j++;
 
          x=Y%32;
 
-         if (x<=8)
-            a=0;
-         else if (x>=8)
-            a=1;
-         else if (x>=16)
-            a=2;
-         else if (x>=24)
-            a=3;
-
-         Nmbrcnt=round(Nmbrcnt-0.5);
-
-         indr[Nmbrcnt]=0;
+         if (x/16>=1)
+           a=1;
+         else
+           a=0;
 
          if (24 >= incr.c_str().length()) {
              while (a>=0) {
@@ -106,6 +110,22 @@ int main(int x, char ** argc, char * argv[]) {
                          incr[D]=011;
                       else if (7==x)
                          incr[D]=111;
+                      else if (8==x)
+                         incr[D]=0001;
+                    else if (9==x)
+                         incr[D]=1001;
+                    else if (10==x)
+                         incr[D]=0101;
+                    else if (11==x)
+                         incr[D]=1101;
+                    else if (12=x)
+                         incr[D]=0011;
+                    else if (13==x)
+                         incr[D]=1011;
+                    else if (14==x)
+                         incr[D]=0111;
+                    else if (15==x)
+                         incr[D]=1111;
                     D+=3;
                     a--;
               }
