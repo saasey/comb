@@ -126,6 +126,8 @@ int main(int x, char ** argc, char * argv[]) {
                          incr[D]=0111;
                     else if (15==x)
                          incr[D]=1111;
+                    if (x>=8)
+                      D++;
                     D+=3;
                     a--;
               }
