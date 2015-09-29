@@ -30,24 +30,27 @@ int main(int x, char ** argc, char * argv[]) {
        }
 
     for (V : P) {
-       
-       if (P[V]==1)
+       if (P[V]==0 && P[V+1]==0) {
+            Y=0;
+       if (P[V]==1 && P[V+1]==0) {
             Y+=32;
+       if (P[V]==0 && P[V+1]==1) {
+            Y+=64;
+       if (P[V]==1 && P[V+1]==1) {
+            Y+=96;
+
        else if (heh[j]!=0 && heh[j]!=1)
             break;
-
-       if (P[V]==0) {
-            if (heh.c_str().length()==j)
-                heh=in.getline();
-            L+=heh[j]+heh[j+1]+heh[j+2];
-            j+=3;
-            if P[V+1]==1) 
-               out << (char)Y+L;
-       }
+       
+       if (heh.c_str().length()==j)
+            heh=in.getline();
+       L+=heh[j]+heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4]+heh[j+5];
+       j+=6;
+            out << (char)Y+L;
 
        if (V>=P.c_str().length()) 
             PassP=1;
-
+       V++;
     }
   }
      out.close();
@@ -70,26 +73,20 @@ int main(int x, char ** argc, char * argv[]) {
          }
          Nmbrcnt = Y/32;
 
-         if (j=0;j<=Nmbrcnt-1;j++)
-            indr[j]=1;
+         if (Numbrcnt==0)
+            indr[j]=00;
+         else if (Nmbrcnt==1)
+            indr[j]=10
+         else if (Numbrcnt==2)
+            indr[j]=01;
+         else if (Nmbrcnt==3)
+            indr[j]=11;
+         j++;
 
          x=Y%32;
 
-         if (x<=8)
-            a=0;
-         else if (x>=8)
-            a=1;
-         else if (x>=16)
-            a=2;
-         else if (x>=24)
-            a=3;
-
-         Nmbrcnt=round(Nmbrcnt-0.5);
-
-         indr[Nmbrcnt]=0;
 
          if (24 >= incr.c_str().length()) {
-             while (a>=0) {
                       if (0==x)
                          incr[D]=000;
                       else if (1==x)
@@ -97,18 +94,64 @@ int main(int x, char ** argc, char * argv[]) {
                       else if (2==x)
                          incr[D]=010;
                       else if (3==x)
-                         incr[D]=110;
+                         incr[D]=11000;
                       else if (4==x)
-                         incr[D]=001;
+                         incr[D]=00100;
                       else if (5==x)
-                         incr[D]=101;
+                         incr[D]=10100;
                       else if (6==x)
-                         incr[D]=011;
+                         incr[D]=01100;
                       else if (7==x)
-                         incr[D]=111;
-                    D+=3;
-                    a--;
-              }
+                         incr[D]=11100;
+                     if (15==x)
+                         incr[D]=00010;
+                      else if (8==x)
+                         incr[D]=10010;
+                      else if (9==x)
+                         incr[D]=01010;
+                      else if (10==x)
+                         incr[D]=11010;
+                      else if (11==x)
+                         incr[D]=00110;
+                      else if (12==x)
+                         incr[D]=10110;
+                      else if (13==x)
+                         incr[D]=01110;
+                      else if (14==x)
+                         incr[D]=11110;
+                    if (16=x)
+                         incr[D]=00001;
+                      else if (17==x)
+                         incr[D]=10001;
+                      else if (18==x)
+                         incr[D]=01001;
+                      else if (19==x)
+                         incr[D]=11001;
+                      else if (20==x)
+                         incr[D]=00101;
+                      else if (21==x)
+                         incr[D]=10101;
+                      else if (22==x)
+                         incr[D]=01101;
+                      else if (23==x)
+                         incr[D]=11101;
+                     if (24==x)
+                         incr[D]=00011;
+                      else if (25==x)
+                         incr[D]=10011;
+                      else if (26==x)
+                         incr[D]=01011;
+                      else if (27==x)
+                         incr[D]=11011;
+                      else if (28==x)
+                         incr[D]=00111;
+                      else if (29==x)
+                         incr[D]=10111;
+                      else if (30==x)
+                         incr[D]=01111;
+                      else if (31==x)
+                         incr[D]=11111;
+                    D+=4;
              if (indr.c_str().length() >=27) {
                 out << std::hex << indr << endl;
                 incr={};
