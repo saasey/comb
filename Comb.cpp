@@ -22,6 +22,7 @@ int main(int x, char ** argc, char * argv[]) {
        if (PassP=1) {
          P=in.getline();
          PassP=0;
+         V=0;
          j=0;
          Y=32;
        }
@@ -31,19 +32,37 @@ int main(int x, char ** argc, char * argv[]) {
 
     for (V : P) {
        
-       if (P[V]==1)
-            Y+=32;
+       if (P[V]==0 && P[V+1]==0)
+            Y=32;
+       if (P[V]==1 && P[V+1]==0)
+            Y=64;
+       if (P[V]==0 && P[V+1]==1)
+            Y=96;
+       if (P[V]==1 && P[V+1]==1)
+            Y=127;
+
        else if (heh[j]!=0 && heh[j]!=1)
             break;
 
-       if (P[V]==0) {
-            if (heh.c_str().length()==j)
+       if (P[V+2]==0) {
+            if (heh.c_str().length()==j) {
+                j=0;
                 heh=in.getline();
-            L+=heh[j]+heh[j+1]+heh[j+2];
-            j+=3;
-            if P[V+1]==1) 
-               out << (char)Y+L;
+                break;
+            }
+            L+=(int)(heh[j]+heh[j+1]+heh[j+2]);
+            j+=4;
        }
+       if (P[V+2]==1) {
+            if (heh.c_str().length()==j) {
+                j=0;
+                heh=in.getline();
+                break;
+            }
+            L+=(int)(heh[j]+heh[j+1]+heh[j+2]+heh[j+3]);
+            j+=5;
+       }
+       out << (char)Y+L;
 
        if (V>=P.c_str().length()) 
             PassP=1;
@@ -71,16 +90,16 @@ int main(int x, char ** argc, char * argv[]) {
          Nmbrcnt = Y/32;
 
 
-         if (Numbrcnt==0) {
+         if (Numbrcnt==1) {
             indr[j]=00;
          }
-         else if (Nmbrcnt==1) {
+         else if (Nmbrcnt==2) {
             indr[j]=10;
          }
-         else if (Numbrcnt==2) {
+         else if (Numbrcnt==3) {
             indr[j]=01;
          }
-         else if (Nmbrcnt==3) {
+         else if (Nmbrcnt==4) {
             indr[j]=11;
          }
          j++;
