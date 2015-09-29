@@ -88,9 +88,9 @@ int main(int x, char ** argc, char * argv[]) {
          x=Y%32;
 
          if (x/16>=1)
-           a=1;
+           indr[j++]=1;
          else
-           a=0;
+           indr[j++]=0;
 
          if (24 >= incr.c_str().length()) {
              while (a>=0) {
@@ -128,7 +128,7 @@ int main(int x, char ** argc, char * argv[]) {
                          incr[D]=1111;
                     if (x>=8)
                       D++;
-                    D+=3;
+                    D+=4;
                     a--;
               }
              if (indr.c_str().length() >=27) {
