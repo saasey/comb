@@ -44,24 +44,23 @@ int main(int x, char ** argc, char * argv[]) {
        else if (heh[j]!=0 && heh[j]!=1)
             break;
 
-       if (P[V+2]==0) {
-            if (heh.c_str().length()==j) {
-                j=0;
-                heh=in.getline();
-                break;
-            }
+       if (P[V]==0 && P[V+1]==0) {
+            L+=(int)(heh[j]+heh[j+1]);
+            j+=3;
+       }
+       if (P[V]==1 && P[V+1]==0) {
             L+=(int)(heh[j]+heh[j+1]+heh[j+2]);
             j+=4;
        }
-       if (P[V+2]==1) {
-            if (heh.c_str().length()==j) {
-                j=0;
-                heh=in.getline();
-                break;
-            }
+       if (P[V]==0 && P[V+1]==1) {
             L+=(int)(heh[j]+heh[j+1]+heh[j+2]+heh[j+3]);
             j+=5;
        }
+       if (P[V]==1 && P[V+1]==1) {
+            L+=(int)(heh[j]+heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4]);
+            j+=6;
+       }
+
        out << (char)Y+L;
 
        if (V>=P.c_str().length()) 
@@ -106,21 +105,26 @@ int main(int x, char ** argc, char * argv[]) {
 
          x=Y%32;
 
-         if (x/16>=1)
-           indr[j++]=1;
-         else
-           indr[j++]=0;
+         if (x<=3)
+           indr[j++]=00;
+         else if (x>=4 && x<=7)
+           indr[j++]=10;
+         else if (x>=8 && x<=15)
+           indr[j++]=01;
+         else if (x>=16 && x<=31)
+           indr[j++]=11;
+         
 
          if (24 >= incr.c_str().length()) {
              while (a>=0) {
                       if (0==x)
-                         incr[D]=000;
+                         incr[D]=00;
                       else if (1==x)
-                         incr[D]=100;
+                         incr[D]=10;
                       else if (2==x)
-                         incr[D]=010;
+                         incr[D]=01;
                       else if (3==x)
-                         incr[D]=110;
+                         incr[D]=11;
                       else if (4==x)
                          incr[D]=001;
                       else if (5==x)
@@ -145,7 +149,41 @@ int main(int x, char ** argc, char * argv[]) {
                          incr[D]=0111;
                     else if (15==x)
                          incr[D]=1111;
+                    else if (16==x)
+                         incr[D]=00001;
+                    else if (17==x)
+                         incr[D]=10001;
+                    else if (18==x)
+                         incr[D]=01001;
+                    else if (19==x)
+                         incr[D]=11001;
+                    else if (20==x)
+                         incr[D]=00101;
+                    else if (21==x)
+                         incr[D]=10101;
+                    else if (22==x)
+                         incr[D]=01101;
+                    else if (23==x)
+                         incr[D]=11101;
+                    else if (24==x)
+                         incr[D]=00011;
+                    else if (25==x)
+                         incr[D]=10011;
+                    else if (x==26)
+                         incr[D]=01011;
+                    else if (27==x)
+                         incr[D]=11011;
+                    else if (28==x)
+                         incr[D]=00111;
+                    else if (29==x)
+                         incr[D]=10111;
+                   else if (30==x)
+                         incr[D]=01111;
+                    else if (31==x)
+                         incr[D]=11111;
                     if (x>=8)
+                      D++;
+                    if (x>=16)
                       D++;
                     D+=4;
                     a--;
