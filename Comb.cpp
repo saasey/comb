@@ -41,8 +41,10 @@ int main(int x, char ** argc, char * argv[]) {
        if (P[V]==1 && P[V+1]==1)
             Y=127;
        // Check for truebyte sequence material
-       if (heh[j]!=0 && heh[j]!=1)
+       if (j==33) {
             heh=in,get();
+            j=0;
+       }
        // Check for TSM bit count
        if (P[V+2]==0 && P[V+3]==0) {
             L+=(int)(heh[j]+heh[j+1]);
@@ -64,7 +66,7 @@ int main(int x, char ** argc, char * argv[]) {
        out << (char)Y+L;
        V+=4;
        // Check for continuing depth
-       if (V>=P.c_str().length()) 
+       if (V>=27) 
             PassP=1;
 
     }
