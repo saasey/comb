@@ -201,7 +201,6 @@ int main(int x, char ** argc, char * argv[]) {
                 indr={};
              }
          }
-     }
      out.close();
      in.close();
      cout << "The pressing is finished";
