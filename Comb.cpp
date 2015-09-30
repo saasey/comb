@@ -201,6 +201,7 @@ int main(int x, char ** argc, char * argv[]) {
                 indr={};
              }
          }
+       }
      out.close();
      in.close();
      cout << "The pressing is finished";
@@ -210,8 +211,6 @@ int main(int x, char ** argc, char * argv[]) {
        cout << "compress: \t press -c origin.file out.prs" << endl;
        return 0;
    }
- 
- }
  
      return 0;
 }
