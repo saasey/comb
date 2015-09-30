@@ -41,7 +41,7 @@ int main(int x, char ** argc, char * argv[]) {
        if (P[V]==1 && P[V+1]==1)
             Y=127;
 
-       else if (heh[j]!=0 && heh[j]!=1)
+       if (heh[j]!=0 && heh[j]!=1)
             break;
 
        if (P[V]==0 && P[V+1]==0) {
