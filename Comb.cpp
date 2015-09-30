@@ -44,25 +44,25 @@ int main(int x, char ** argc, char * argv[]) {
        if (heh[j]!=0 && heh[j]!=1)
             break;
 
-       if (P[V]==0 && P[V+1]==0) {
+       if (P[V+2]==0 && P[V+3]==0) {
             L+=(int)(heh[j]+heh[j+1]);
             j+=3;
        }
-       if (P[V]==1 && P[V+1]==0) {
+       if (P[V+2]==1 && P[V+3]==0) {
             L+=(int)(heh[j]+heh[j+1]+heh[j+2]);
             j+=4;
        }
-       if (P[V]==0 && P[V+1]==1) {
+       if (P[V+2]==0 && P[V+3]==1) {
             L+=(int)(heh[j]+heh[j+1]+heh[j+2]+heh[j+3]);
             j+=5;
        }
-       if (P[V]==1 && P[V+1]==1) {
+       if (P[V+2]==1 && P[V+3]==1) {
             L+=(int)(heh[j]+heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4]);
             j+=6;
        }
 
        out << (char)Y+L;
-
+       V+=4;
        if (V>=P.c_str().length()) 
             PassP=1;
 
