@@ -31,7 +31,7 @@ int main(int x, char ** argc, char * argv[]) {
        }
 
     for (V : P) {
-       
+       // Start @ POS to get first in addition (ADD)
        if (P[V]==0 && P[V+1]==0)
             Y=32;
        if (P[V]==1 && P[V+1]==0)
@@ -40,10 +40,10 @@ int main(int x, char ** argc, char * argv[]) {
             Y=96;
        if (P[V]==1 && P[V+1]==1)
             Y=127;
-
+       // Check for truebyte sequence material
        if (heh[j]!=0 && heh[j]!=1)
-            break;
-
+            heh=in,get();
+       // Check for TSM bit count
        if (P[V+2]==0 && P[V+3]==0) {
             L+=(int)(heh[j]+heh[j+1]);
             j+=3;
@@ -60,9 +60,10 @@ int main(int x, char ** argc, char * argv[]) {
             L+=(int)(heh[j]+heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4]);
             j+=6;
        }
-
+       // Write to stream
        out << (char)Y+L;
        V+=4;
+       // Check for continuing depth
        if (V>=P.c_str().length()) 
             PassP=1;
 
@@ -88,7 +89,7 @@ int main(int x, char ** argc, char * argv[]) {
          }
          Nmbrcnt = Y/32;
 
-
+         // Write out Start @ POS
          if (Numbrcnt==1) {
             indr[j]=00;
          }
@@ -102,7 +103,7 @@ int main(int x, char ** argc, char * argv[]) {
             indr[j]=11;
          }
          j++;
-
+         // Write out TSM bit count
          x=Y%32;
 
          if (x<=3)
@@ -114,6 +115,7 @@ int main(int x, char ** argc, char * argv[]) {
          else if (x>=16 && x<=31)
            indr[j++]=11;
          
+         // Write out TSM
 
          if (24 >= incr.c_str().length()) {
              while (a>=0) {
@@ -188,7 +190,8 @@ int main(int x, char ** argc, char * argv[]) {
                     D+=4;
                     a--;
               }
-             if (indr.c_str().length() >=27) {
+             // Check length to fit in Hex
+             if (indr.c_str().length() >=28) {
                 out << std::hex << indr << endl;
                 incr={};
                 q=1;
@@ -196,7 +199,8 @@ int main(int x, char ** argc, char * argv[]) {
              else {
                 q=0;
              }
-             if (incr.c_str().length() >=28) {
+             // Check length, same
+             if (incr.c_str().length() >=27) {
                 out << std::hex << incr << endl;
                 indr={};
              }
