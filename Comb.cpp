@@ -63,7 +63,7 @@ int main(int x, char ** argc, char * argv[]) {
             j+=6;
        }
        // Write to stream
-       out << (char)127-L;
+       out << (char)Y-L;
        V+=3;
        // Check for continuing depth
        if (V>=29) 
@@ -89,7 +89,7 @@ int main(int x, char ** argc, char * argv[]) {
          else {
             q=1;
          }
-         Nmbrcnt = 127-Y;
+         Nmbrcnt = Y/32;
 
          // Write out Start @ POS
          if (Numbrcnt==1) {
@@ -106,7 +106,7 @@ int main(int x, char ** argc, char * argv[]) {
          }
          j++;
          // Write out TSM bit count
-         x=(127-Y);
+         x=127-(32*Nmbrcnt);
 
          if (x<=3)
            indr[j++]=00;
