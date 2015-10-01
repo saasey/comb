@@ -30,15 +30,19 @@ int main(int x, char ** argc, char * argv[]) {
        }
 
     for (V : P) {
+       // Over 128?
+       if (P[V]==1)
+            Y=128;
+       V++;
        // Start @ POS to get first in addition (ADD)
        if (P[V]==0 && P[V+1]==0)
-            Y=32;
+            Y+=32;
        if (P[V]==1 && P[V+1]==0)
-            Y=64;
+            Y+=64;
        if (P[V]==0 && P[V+1]==1)
-            Y=96;
+            Y+=96;
        if (P[V]==1 && P[V+1]==1)
-            Y=127;
+            Y+=127;
        // Check for truebyte sequence material
        if (j==33) {
             heh=in.get();
