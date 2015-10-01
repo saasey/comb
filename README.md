@@ -1,3 +1,5 @@
+# Please give me feedback, your compression ratios with and without the comb program.thx
+
 # comb - a prepper for BigData to compress with.
 
 This was made to create new patterns out of seemingly random data.
