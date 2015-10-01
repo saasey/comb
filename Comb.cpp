@@ -64,7 +64,7 @@ int main(int x, char ** argc, char * argv[]) {
        }
        // Write to stream
        out << (char)Y+L;
-       V+=4;
+       V+=3;
        // Check for continuing depth
        if (V>=27) 
             PassP=1;
