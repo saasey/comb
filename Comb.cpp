@@ -82,7 +82,7 @@ int main(int x, char ** argc, char * argv[]) {
      cout << "The depression is fiń";
      return 0;
   } else if (strcmp("-c",argv[i])) {
-   std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
+   std::ifstream  in(argv[i+1], std::ios::in);
    std::ofstream  out(argv[i+2], std::ios::in)
         int q=1; int D=0;
         int Nmbrcnt=0;
