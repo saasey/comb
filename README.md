@@ -1,6 +1,6 @@
 # comb - a prepper for BigData to compress with.
 
-This was made to create new patterns out of seemingly random data. If it is random even, it'll still do the same thing.
+This was made to create new patterns out of seemingly random data.
 To use, compress with it, then use your favorite zipper. Then to undo it, unzip it, and decompress with comb.
 
 # v0.81b Bug Fixes
