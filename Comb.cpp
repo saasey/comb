@@ -203,6 +203,7 @@ int main(int x, char ** argc, char * argv[]) {
        cout << "compress: \t press -c origin.file out.prs" << endl;
        return 0;
    }
+  }
  
      return 0;
 }
