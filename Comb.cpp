@@ -24,7 +24,6 @@ int main(int x, char ** argc, char * argv[]) {
          PassP=0;
          V=0;
          j=0;
-         Y=32;
        }
        else {
          PassP=1;
