@@ -63,10 +63,10 @@ int main(int x, char ** argc, char * argv[]) {
             j+=6;
        }
        // Write to stream
-       out << (char)Y+L;
+       out << (char)127-L;
        V+=3;
        // Check for continuing depth
-       if (V>=27) 
+       if (V>=29) 
             PassP=1;
 
     }
@@ -89,7 +89,7 @@ int main(int x, char ** argc, char * argv[]) {
          else {
             q=1;
          }
-         Nmbrcnt = Y/32;
+         Nmbrcnt = 127-Y;
 
          // Write out Start @ POS
          if (Numbrcnt==1) {
@@ -106,7 +106,7 @@ int main(int x, char ** argc, char * argv[]) {
          }
          j++;
          // Write out TSM bit count
-         x=Y%32;
+         x=(127-Y);
 
          if (x<=3)
            indr[j++]=00;
@@ -185,15 +185,11 @@ int main(int x, char ** argc, char * argv[]) {
                          incr[D]=01111;
                     else if (31==x)
                          incr[D]=11111;
-                    if (x>=8)
-                      D++;
-                    if (x>=16)
-                      D++;
-                    D+=4;
+                    D++;
                     a--;
               }
              // Check length to fit in Hex
-             if (indr.c_str().length() >=28) {
+             if (indr.c_str().length() >28) {
                 out << std::hex << indr << endl;
                 incr={};
                 q=1;
