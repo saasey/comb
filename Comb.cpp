@@ -42,31 +42,34 @@ int main(int x, char ** argc, char * argv[]) {
             Y=127;
        // Check for truebyte sequence material
        if (j==33) {
-            heh=in,get();
+            heh=in.get();
             j=0;
        }
        // Check for TSM bit count
-       if (P[V+2]==0 && P[V+3]==0) {
+       if (P[V+2]==1 && P[V+3]==1) {
+            L+=(int)(heh[j]+heh[j+1]);
+            j+=3;
+       }
+       if (P[V+2]==0 && P[V+3]==1) {
+            L+=4;
             L+=(int)(heh[j]+heh[j+1]);
             j+=3;
        }
        if (P[V+2]==1 && P[V+3]==0) {
+            L+=8;
             L+=(int)(heh[j]+heh[j+1]+heh[j+2]);
             j+=4;
        }
-       if (P[V+2]==0 && P[V+3]==1) {
+       if (P[V+2]==0 && P[V+3]==0) {
+            L+=16;
             L+=(int)(heh[j]+heh[j+1]+heh[j+2]+heh[j+3]);
             j+=5;
-       }
-       if (P[V+2]==1 && P[V+3]==1) {
-            L+=(int)(heh[j]+heh[j+1]+heh[j+2]+heh[j+3]+heh[j+4]);
-            j+=6;
        }
        // Write to stream
        out << (char)Y-L;
        V+=3;
        // Check for continuing depth
-       if (V>=29) 
+       if (V>=28) 
             PassP=1;
 
     }
@@ -78,17 +81,26 @@ int main(int x, char ** argc, char * argv[]) {
   } else if (strcmp("-c",argv[i])) {
    std::ifstream  in(argv[i+1], std::ios::in | std::ios::binary);
    std::ofstream  out(argv[i+2], std::ios::in)
-        int q=1;
+        int q=1; int D=0;
         int Nmbrcnt=0;
    while (!(in.eof())) {
          int a=0;
-         int D=0;
          if (q==1) {
             Y=in.get();
+            D=0;
          }
          else {
             q=1;
          }
+         if (Y>=128) {
+            indr[j]=1;
+            j++;
+         }
+         else {
+            indr[j]=0;
+            j++;
+         }
+
          Nmbrcnt = Y/32;
 
          // Write out Start @ POS
@@ -108,14 +120,20 @@ int main(int x, char ** argc, char * argv[]) {
          // Write out TSM bit count
          x=127-(32*Nmbrcnt);
 
-         if (x<=3)
-           indr[j++]=00;
-         else if (x>=4 && x<=7)
-           indr[j++]=10;
-         else if (x>=8 && x<=15)
-           indr[j++]=01;
-         else if (x>=16 && x<=31)
+         if (x<=3) {
            indr[j++]=11;
+         else if (x>=4 && x<=7) {
+           x-=4;
+           indr[j++]=01;
+         }
+         else if (x>=8 && x<=15) {
+           x-=8;
+           indr[j++]=10;
+         }
+         else if (x>=16 && x<=31) {
+           x-=16;
+           indr[j++]=00;
+         }
          
          // Write out TSM
 
@@ -153,38 +171,6 @@ int main(int x, char ** argc, char * argv[]) {
                          incr[D]=0111;
                     else if (15==x)
                          incr[D]=1111;
-                    else if (16==x)
-                         incr[D]=00001;
-                    else if (17==x)
-                         incr[D]=10001;
-                    else if (18==x)
-                         incr[D]=01001;
-                    else if (19==x)
-                         incr[D]=11001;
-                    else if (20==x)
-                         incr[D]=00101;
-                    else if (21==x)
-                         incr[D]=10101;
-                    else if (22==x)
-                         incr[D]=01101;
-                    else if (23==x)
-                         incr[D]=11101;
-                    else if (24==x)
-                         incr[D]=00011;
-                    else if (25==x)
-                         incr[D]=10011;
-                    else if (x==26)
-                         incr[D]=01011;
-                    else if (27==x)
-                         incr[D]=11011;
-                    else if (28==x)
-                         incr[D]=00111;
-                    else if (29==x)
-                         incr[D]=10111;
-                   else if (30==x)
-                         incr[D]=01111;
-                    else if (31==x)
-                         incr[D]=11111;
                     D++;
                     a--;
               }
@@ -193,6 +179,7 @@ int main(int x, char ** argc, char * argv[]) {
                 out << std::hex << indr << endl;
                 incr={};
                 q=1;
+                j=0;
              }
              else {
                 q=0;
