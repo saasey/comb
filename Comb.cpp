@@ -50,7 +50,7 @@ int main(int x, char ** argc, char * argv[]) {
        }
        // Check for TSM bit count
        if (P[V+2]==1 && P[V+3]==1) {
-            L+=(int)(heh[j]+heh[j+1]);
+            L+=(int)(heh[j]);
             j+=3;
        }
        if (P[V+2]==0 && P[V+3]==1) {
@@ -123,18 +123,18 @@ int main(int x, char ** argc, char * argv[]) {
          // Write out TSM bit count
          x=127-(32*Nmbrcnt);
 
-         if (x<=3) {
+         if (x<=2) {
            indr[j++]=11;
          else if (x>=4 && x<=7) {
-           x-=4;
+           x-=3;
            indr[j++]=01;
          }
          else if (x>=8 && x<=15) {
-           x-=8;
+           x-=7;
            indr[j++]=10;
          }
          else if (x>=16 && x<=31) {
-           x-=16;
+           x-=15;
            indr[j++]=00;
          }
          
@@ -143,9 +143,9 @@ int main(int x, char ** argc, char * argv[]) {
          if (24 >= incr.c_str().length()) {
              while (a>=0) {
                       if (0==x)
-                         incr[D]=00;
+                         incr[D]=0;
                       else if (1==x)
-                         incr[D]=10;
+                         incr[D]=1;
                       else if (2==x)
                          incr[D]=01;
                       else if (3==x)
